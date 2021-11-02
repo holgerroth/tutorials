@@ -78,7 +78,7 @@ ID   State      Output               E-Level  Times(r/u/s)   Command [run=1/1]
 3    queued     (file)                                       ./fl_utils/fl_run_auto/run_fl.sh 2 spleen_try4 4
 ```
 
-After the first task finished, the task queue will be updated.
+After the first task is finished, the task queue will be updated.
 ```
 ID   State      Output               E-Level  Times(r/u/s)   Command [run=1/1]
 1    running    /tmp/ts-out.znAk7z                           ./fl_utils/fl_run_auto/run_fl.sh 2 spleen_try2 2
