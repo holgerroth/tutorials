@@ -10,7 +10,11 @@ OUTPUT_DIR="${PWD}/test_prediction"  # where to save predictions
 
 # interactive session
 #COMMAND="/bin/bash"
+
 # test learner
+# dataset_root & datalist_prefix need to be updated for inference on unseen data.
+# gt1-3 need updating with the right ground truth.
+
 COMMAND="echo INFERENCE:; \
   python3 pt/utils/mammo_inference.py \
     --model_filepath /result_server/run_1/app_server/best_FL_global_model.pt \
@@ -20,7 +24,7 @@ COMMAND="echo INFERENCE:; \
   echo EVALUATION:; \
   python3 pt/utils/challenge_evaluate.py \
     --pred /output/test_predictions.json --test_name test_site \
-    --gt1 ../../../dmist_files/dataset_site-1.json \  # need to be replaced
+    --gt1 ../../../dmist_files/dataset_site-1.json \
     --gt2 ../../../dmist_files/dataset_site-2.json \
     --gt3 ../../../dmist_files/dataset_site-3.json"
 
