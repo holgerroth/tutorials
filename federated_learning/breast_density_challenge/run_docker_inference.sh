@@ -4,7 +4,7 @@ DOCKER_IMAGE=monai-nvflare:latest
 GPU=0
 
 DATA_DIR="${PWD}/data"
-EVAL_CODE_DIR="${PWD}"  # includes inference code
+EVAL_CODE_DIR="${PWD}"  # Location of challenge_evaluate.py
 TRAIN_RESULT_DIR="${PWD}/result_server"  # participants result folder
 OUTPUT_DIR="${PWD}/test_prediction"  # where to save predictions
 
