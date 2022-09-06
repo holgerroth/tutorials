@@ -4,7 +4,7 @@ DOCKER_IMAGE=monai-nvflare:latest
 GPU=0
 
 DATA_DIR="${PWD}/data"
-EVAL_CODE_DIR="${PWD}"  # Location of challenge_evaluate.py
+INFER_CODE_DIR="${PWD}"  # Location of mammo_inference.py & challenge_evaluate.py
 TRAIN_RESULT_DIR="${PWD}/result_server"  # participants result folder
 OUTPUT_DIR="${PWD}/test_prediction"  # where to save predictions
 
@@ -16,13 +16,13 @@ OUTPUT_DIR="${PWD}/test_prediction"  # where to save predictions
 # gt1-3 need updating with the right ground truth.
 
 COMMAND="echo INFERENCE:; \
-  python3 /code/pt/utils/mammo_inference.py \
+  python3 /infer_code/mammo_inference.py \
     --model_filepath /result_server/run_1/app_server/best_FL_global_model.pt \
     --dataset_root /data/preprocessed \
     --datalist_prefix /data/dataset_blinded_ \
     --output_root /output; \
   echo EVALUATION:; \
-  python3 /eval_code/challenge_evaluate.py \
+  python3 /infer_code/challenge_evaluate.py \
     --pred /output/test_predictions.json --test_name test_site \
     --site_names test_site \
     --gt1 ../../../dmist_files/dataset_test_site.json"
@@ -33,7 +33,7 @@ docker run -it \
 --name="mammo_inference" \
 -e NVIDIA_VISIBLE_DEVICES=${GPU} \
 -v ${DATA_DIR}:/data:ro \
--v ${EVAL_CODE_DIR}:/eval_code:ro \
+-v ${INFER_CODE_DIR}:/infer_code:ro \
 -v ${TRAIN_RESULT_DIR}:/result_server:ro \
 -v ${OUTPUT_DIR}:/output \
 -w /code \
